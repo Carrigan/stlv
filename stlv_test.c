@@ -6,16 +6,6 @@
 #define	TAG_ONE	0xDEAD
 #define	TAG_TWO	0xBEEF
 
-char *stlv_test_known_data(void)
-{
-	
-}
-
-char *stlv_test_flexible_size(void)
-{
-
-}
-
 char *stlv_test_bootstrap(void)
 {
 	char buffer[100];
@@ -32,7 +22,7 @@ char *stlv_test_bootstrap(void)
 	stlv_compose(&tlv_head, TAG_ONE, sizeof(x), &x);
 	tlv_second_entry = tlv_head;
 	stlv_compose(&tlv_head, TAG_TWO, sizeof(y), &y);
-	
+
 	// Read out the first one
 	tlv_head = buffer;
 	stlv_copy_value(tlv_head, &x_copy);

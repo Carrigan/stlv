@@ -15,7 +15,7 @@ int main()
 	char *message = 0;
 
 	if(message = run_all_tests()) {
-		printf("%s", message);
+		printf("%s\n", message);
 		printf("TESTS FAILED.");
 		return 1;
 	}

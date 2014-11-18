@@ -1,16 +1,31 @@
+/**
+ *	@brief	The interface definitions for a simple tlv parser and composer.
+ *	
+ *	See stlv.c for more information and use cases.
+ *
+ *	Copyright Brian Carrigan 2014.
+ *	Distributed under the MIT License. See accompanying file license.txt or copy 
+ *	at http://opensource.org/licenses/MIT.
+ */
+
 #ifndef STLV_H
 #define STLV_H
 #include <stdint.h>
 
+//! The type to be used for a tag.
 typedef uint16_t tlv_tag_t;
-typedef uint8_t  tlv_len_t;
-#define STLV_OVERHEAD	sizeof(tlv_tag_t) + sizeof(tlv_len_t)
 
+//! The type to be used for the length.
+typedef uint8_t  tlv_len_t;
+
+//! A castable tag-length-value type. This is used to calculate serialization
+//! and offsets, but can also be used to directly write tlv structures. Care
+//! should be taken for word alignment since this is a packed structure.
 typedef struct __attribute__((packed))
 {
 	tlv_tag_t tag;
 	tlv_len_t length;
-	char value[128];
+	char value[256];
 } stlv_t;
 
 // TLV Indexing
